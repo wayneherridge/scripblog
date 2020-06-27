@@ -8,7 +8,7 @@ var conString = 'postgres://@localhost/scriptureblog';
 //-------------
 //Posts
 //get all posts
-router.get('/articles', function (req, res, next) {
+router.get('/', function (req, res, next) {
     pg.connect(conString, function (err, client, done) {
         if (err) {
             return console.error('error fetching client from pool', err);
