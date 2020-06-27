@@ -3,7 +3,7 @@ var router = express.Router();
 
 //pg config
 var pg = require('pg');
-var conString = 'postgres://@localhost/scriptureblog';
+var conString = process.env.DATABASE_URL || 'postgres://@localhost/scriptureblog';
 
 /* GET users listing. */
 //Users
