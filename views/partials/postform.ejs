@@ -1,0 +1,13 @@
+<form action="<%= formAction %>" method="POST">
+    <% if (formAction == '/addresses/') { %>
+    <input type="hidden" name="_method" value="put" />
+    <% } %>
+    <label for="pDate">Article Date:</label><br>
+    <input type="text" id="pDate" name="pdate" value="Article Date"><br>
+    <label for="title">Article Title:</label><br>
+    <input type="text" id="title" name="title" value="Article Title"><br>
+    <label for="title">Article Title:</label><br>
+    <label for="body">Article Content:</label><br>
+    <textarea name="body">Enter text here...</textarea><br>
+    <input type="submit" value="Submit">
+</form>
