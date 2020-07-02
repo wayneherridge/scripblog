@@ -1,8 +1,8 @@
 <%- include('partials/header') %>
 
+<% articles.forEach(article => { %>
 <div class="container">
 
-    <% articles.forEach(article => { %>
     <div class="row">
         <div class="col-sm-6">
             <div class="card">
@@ -13,9 +13,12 @@
             </div>
         </div>
     </div>
-
-    <% }) %>
 </div>
+
+
+<% }) %>
+
+
 <div id="comments">
 
 </div>
