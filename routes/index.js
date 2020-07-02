@@ -29,7 +29,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/articles/create', function (req, res, next) {
     res.render('addArticle', {
-        'formAction': '/articles'
+        'formAction': '/articles',
+        'formMethod': 'POST'
     });
 });
 
@@ -81,7 +82,8 @@ router.get('/articles/edit/:id', function (req, res, next) {
             }
             res.render('editArticle', {
                 'article': article,
-                'formAction': '/articles/'
+                'formAction': '/articles/',
+                'formMethod': 'PUT'
             });
         });
     });
