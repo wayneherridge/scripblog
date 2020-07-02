@@ -41,7 +41,7 @@ router.post('/articles', function (req, res, next) {
             return console.error('error fetching client from pool', err);
         }
         console.log("connected to database");
-        client.query('INSERT INTO articles(user_id, content) VALUES($1, $2) returning id', [req.body.user_id, req.body.content], function (err, result) {
+        client.query('INSERT INTO articles(user_id, body) VALUES($1, $2) returning id', [req.body.user_id, req.body.content], function (err, result) {
             done();
             if (err) {
                 return console.error('error running query', err);
