@@ -41,7 +41,7 @@ router.post('/articles', function (req, res, next) {
             return console.error('error fetching client from pool', err);
         }
         console.log("connected to database");
-        client.query('INSERT INTO articles(user_id, body) VALUES($1, $2) returning id', [req.body.user_id, req.body.content], function (err, result) {
+        client.query('INSERT INTO articles(user_id, body) VALUES($1, $2) returning id', [req.body.user_id, req.body.body], function (err, result) {
             done();
             if (err) {
                 return console.error('error running query', err);
@@ -58,7 +58,7 @@ router.get('/articles/:id', function (req, res, next) {
             return console.error('error fetching client from pool', err);
         }
         console.log("connected to database");
-        client.query('SELECT * FROM articles WHERE id = $1', [req.params.id], function (err, result) {
+        client.query('SELECT * FROM articles WHERE article_id = $1', [req.params.id], function (err, result) {
             done();
             if (err) {
                 return console.error('error running query', err);
@@ -75,13 +75,13 @@ router.get('/articles/edit/:id', function (req, res, next) {
             return console.error('error fetching client from pool', err);
         }
         console.log("connected to database");
-        client.query('SELECT * FROM articles WHERE id = $1', [req.params.id], function (err, result) {
+        client.query('SELECT * FROM articles WHERE article_id = $1', [req.params.id], function (err, result) {
             done();
             if (err) {
                 return console.error('error running query', err);
             }
             res.render('editArticle', {
-                'article': article,
+                'article': result,
                 'formAction': '/articles/',
                 'formMethod': 'PUT'
             });
@@ -96,7 +96,7 @@ router.put('/articles/:id', function (req, res, next) {
             return console.error('error fetching client from pool', err);
         }
         console.log("connected to database");
-        client.query('UPDATE articles SET user_id = $2, content = $3  WHERE id = $1', [req.params.id, req.body.user_id, req.body.content], function (err, result) {
+        client.query('UPDATE articles SET user_id = $2, body = $3  WHERE article_id = $1', [req.params.id, req.body.user_id, req.body.content], function (err, result) {
             done();
             if (err) {
                 return console.error('error running query', err);
